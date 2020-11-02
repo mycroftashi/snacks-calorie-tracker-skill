@@ -9,7 +9,8 @@ class SnacksCalorieTracker(MycroftSkill):
     def handle_tracker_calorie_snacks(self, message):
         self.speak_dialog('tracker.calorie.snacks')
         with open('test/Calorie_Master.json') as f:
-        data = json.load(f)
+            data = json.load(f)
+
         # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
         print(data)
 
