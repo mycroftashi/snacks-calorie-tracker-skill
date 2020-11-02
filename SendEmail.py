@@ -27,7 +27,7 @@ class Emailer:
 		session.sendmail(GMAIL_USERNAME, recipient, headers + "\r\n\r\n" + content)
 		session.quit
 
-
+print ("sending email now")
 sender = Emailer()
 sendTo = 'mycroftashi83@email.com'
 emailSubject = "Hello World"
