@@ -3,7 +3,7 @@ import smtplib
 # Email Variables
 SMTP_SERVER = 'smtp.gmail.com'  # Email Server (don't change!)
 SMTP_PORT = 587  # Server Port (don't change!)
-GMAIL_USERNAME = 'mycroftashi83@email.com'  # change this to match your gmail account
+GMAIL_USERNAME = 'mycroftashi83@gmail.com'  # change this to match your gmail account
 GMAIL_PASSWORD = 'mycroft1983'  # change this to match your gmail password
 
 
