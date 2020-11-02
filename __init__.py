@@ -16,19 +16,23 @@ class SnacksCalorieTracker(MycroftSkill):
 
         # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
         print(data)
-        with open(tracker) as json_file:
-            data = json.load(json_file)
 
-        temp = data['Snacks']
+    with open(tracker) as json_file:
+        dataw = json.load(json_file)
+
+        temp = dataw['Snacks']
 
         # python object to be appended
-        y = {"snack": 'Cheery',
+        y = {"snack": 'Chero',
              "quantity": "1",
              "consumed": "900"
              }
 
         # appending data to emp_details
         temp.append(y)
+
+   with open(tracker, 'w') as f:
+     json.dump(dataw, f, indent=4)
 
 def create_skill():
     return SnacksCalorieTracker()
