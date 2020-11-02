@@ -1,0 +1,9 @@
+{
+  "utterance": "Ok I will not eat this",
+  "intent_type": "ChangedMindIntent",
+  "intent": {
+    "DeclineKeyword": "No I will not"
+  }
+}
+
+

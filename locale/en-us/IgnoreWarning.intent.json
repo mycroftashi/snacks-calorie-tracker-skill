@@ -1,0 +1,11 @@
+
+{
+  "utterance": "Yes I Do",
+  "intent_type": "IgnoreWarningIntent",
+  "intent": {
+    "ConfirmKeyword": "Yes I do "
+  }
+}
+
+
+
