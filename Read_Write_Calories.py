@@ -7,12 +7,12 @@ with open('test/Calorie_Master.json') as f:
 print(data)
 
 
-def write_json(data, filename='DailySnackTracker.json'):
+def write_json(data, filename='test/DailySnackTracker.json'):
 	with open(filename, 'w') as f:
 		json.dump(data, f, indent=4)
 
 
-with open('DailySnackTracker.json') as json_file:
+with open('test/DailySnackTracker.json') as json_file:
 	data = json.load(json_file)
 
 	temp = data['Snacks']
