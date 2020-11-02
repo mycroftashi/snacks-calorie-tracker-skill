@@ -23,7 +23,7 @@ class SnacksCalorieTracker(MycroftSkill):
             temp = dataw['Snacks']
 
             # python object to be appended
-            y = {"snack": 'Chero',
+            y = {"snack": 'kitkat',
                  "quantity": "1",
                  "consumed": "900"
                  }
