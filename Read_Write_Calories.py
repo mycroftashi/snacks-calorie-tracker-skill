@@ -18,7 +18,7 @@ with open('test/DailySnackTracker.json') as json_file:
 	temp = data['Snacks']
 
 	# python object to be appended
-	y = {"snack": 'Cheerios',
+	y = {"snack": 'something',
 	     "quantity": "1",
 	     "consumed": "900"
 	     }
