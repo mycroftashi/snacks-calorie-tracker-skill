@@ -39,13 +39,15 @@ class SnacksCalorieTracker(MycroftSkill):
     def handle_tracker_calorie_snacks(self, message):
         self.speak_dialog('WellDoneMessage')
 
-    @intent_file_handler('ignore.warning.intent')
-    def handle_tracker_calorie_snacks(self, message):
-        self.speak_dialog('TrackSnacksAdvice')
 
     @intent_file_handler('inform.about.eating,intent')
     def handle_tracker_calorie_snacks(self, message):
         self.speak_dialog('WarnCalorie')
+
+    @intent_file_handler('ignore.warning.intent')
+    def handle_tracker_calorie_snacks(self, message):
+        self.speak_dialog('TrackSnacksAdvice')
+
 
 def create_skill():
     return SnacksCalorieTracker()
