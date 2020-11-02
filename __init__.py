@@ -30,9 +30,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
             # appending data to emp_details
             temp.append(y)
-
-       with open(tracker, 'w') as f:
-         json.dump(dataw, f, indent=4)
+            json.dump(dataw, json_file, indent=4)
 
 def create_skill():
     return SnacksCalorieTracker()
