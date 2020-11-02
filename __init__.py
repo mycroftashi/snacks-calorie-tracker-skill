@@ -9,12 +9,12 @@ class SnacksCalorieTracker(MycroftSkill):
 
         MycroftSkill.__init__(self)
 
-    @intent_handler('InformAboutEating').require('I am eating')
+    @intent_handler(IntentBuilder('InformAboutEating').require('I am eating'))
     def warn_about_snacks(self, message):
         self.speak_dialog('WarnCalorie')
 
 
-    @intent_handler('IgnoreWarning').require('I am eating').require('Yes I do ')
+    @intent_handler(IntentBuilder('IgnoreWarning').require('I am eating').require('Yes I do '))
     def track_snacks_eating(self, message):
         self.speak_dialog('TrackSnacksAdvice')
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
@@ -42,7 +42,7 @@ class SnacksCalorieTracker(MycroftSkill):
             with open(tracker, 'w') as f:
                 json.dump(dataw, f, indent=4)
 
-    @intent_handler('ChangedMind').require('Ok I will not eat this')
+    @intent_handler(IntentBuilder('ChangedMind').require('Ok I will not eat this'))
     def good_choice(self, message):
         self.speak_dialog('WellDoneMessage')
 
