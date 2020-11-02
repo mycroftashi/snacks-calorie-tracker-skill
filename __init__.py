@@ -1,7 +1,7 @@
 from adapt.intent import IntentBuilder
 from mycroft import MycroftSkill, intent_handler
 
-class PotatoSkill(MycroftSkill):
+class SnacksCalorieTracker(MycroftSkill):
 
     @intent_handler(IntentBuilder('WhatIsPotato').require('What')
                     .require('Potato'))
@@ -19,4 +19,4 @@ class PotatoSkill(MycroftSkill):
             self.speak_dialog('like.potato.generic')
 
 def create_skill():
-    return PotatoSkill()
+    return SnacksCalorieTracker()
