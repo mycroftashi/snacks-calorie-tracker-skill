@@ -7,7 +7,7 @@ class SnacksCalorieTracker(MycroftSkill):
     def __init__(self):
         super().__init__()
 
-    @intent_handler(IntentBuilder('InformAboutEatingIntent').require('SnackKeyword'))
+    @intent_handler(IntentBuilder('InformAboutEatingIntent').require("Chewy bar"))
     def handle_inform_about_eating_intent(self, message):
         self.speak_dialog("WarnCalorie")
 
