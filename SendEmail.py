@@ -29,7 +29,7 @@ class Emailer:
 
 print ("sending email now")
 sender = Emailer()
-sendTo = 'mycroftashi83@email.com'
+sendTo = 'mycroftashi@email.com'
 emailSubject = "Hello World"
 emailContent = "This is a test of my Emailer Class"
 
