@@ -3,7 +3,7 @@ import smtplib
 # Email Variables
 SMTP_SERVER = 'smtp.gmail.com'  # Email Server (don't change!)
 SMTP_PORT = 587  # Server Port (don't change!)
-GMAIL_USERNAME = 'mycroftashi83@gmail.com'  # change this to match your gmail account
+GMAIL_USERNAME = 'mycroftashi@gmail.com'  # change this to match your gmail account
 GMAIL_PASSWORD = 'mycroft1983'  # change this to match your gmail password
 
 
@@ -34,4 +34,4 @@ emailSubject = "Hello World"
 emailContent = "This is a test of my Emailer Class"
 
 #Sends an email to the "sendTo" address with the specified "emailSubject" as the subject and "emailContent" as the email content.
-sender.sendmail(sendTo, emailSubject, emailContent)  
+sender.sendmail(sendTo, emailSubject, emailContent)
