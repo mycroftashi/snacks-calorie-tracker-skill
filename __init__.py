@@ -3,20 +3,28 @@ from mycroft import MycroftSkill, intent_handler
 
 class SnacksCalorieTracker(MycroftSkill):
 
-    @intent_handler(IntentBuilder('WhatIsPotato').require('What')
-                    .require('Potato'))
-    def handle_what_is(self, message):
-        self.speak_dialog('potato.description')
+    @intent_handler(IntentBuilder('ThankYouIntent').require('ThankYouKeyword'))
+    def handle_thank_you_intent(self, message):
+        """ This is an Adapt intent handler, it is triggered by a keyword."""
+        self.speak_dialog("welcome")
 
-    @intent_handler(IntentBuilder('DoYouLikePotato').require('Potato')
-                    .require('Like').optionally('Type').one_of('You', 'I'))
-    def handle_do_you_like(self, message):
-        potato_type = message.data.get('Type')
-        if potato_type is not None:
-            self.speak_dialog('like.potato.type',
-                              {'type': potato_type})
-        else:
-            self.speak_dialog('like.potato.generic')
+    @intent_handler('HowAreYou.intent')
+    def handle_how_are_you_intent(self, message):
+        """ This is a Padatious intent handler.
+		It is triggered using a list of sample phrases."""
+        self.speak_dialog("how.are.you")
+
+    @intent_handler(IntentBuilder('HelloWorldIntent')
+                    .require('HelloWorldKeyword'))
+    def handle_hello_world_intent(self, message):
+        """ Skills can log useful information. These will appear in the CLI and
+		the skills.log file."""
+        self.log.info("There are five types of log messages: "
+                      "info, debug, warning, error, and exception.")
+        self.speak_dialog("hello.world")
+
+    def stop(self):
+        pass
 
 def create_skill():
     return SnacksCalorieTracker()
