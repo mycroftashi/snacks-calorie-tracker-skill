@@ -1,22 +1,24 @@
 from adapt.intent import IntentBuilder
-from mycroft import MycroftSkill, intent_handler
+from mycroft import MycroftSkill, intent_file_handler, intent_handler
+from mycroft.skills.context import adds_context, removes_context
+import os.path
+import json
 
-class PotatoSkill(MycroftSkill):
+class SnacksCalorieTracker(MycroftSkill):
+    def __init__(self):
 
-    @intent_handler(IntentBuilder('WhatIsPotato').require('What')
-                    .require('Potato'))
-    def handle_what_is(self, message):
-        self.speak_dialog('potato.description')
+        MycroftSkill.__init__(self)
 
-    @intent_handler(IntentBuilder('DoYouLikePotato').require('Potato')
-                    .require('Like').optionally('Type').one_of('You', 'I'))
-    def handle_do_you_like(self, message):
-        potato_type = message.data.get('Type')
-        if potato_type is not None:
-            self.speak_dialog('like.potato.type',
-                              {'type': potato_type})
-        else:
-            self.speak_dialog('like.potato.generic')
+    @intent_handler(IntentBuilder('IAmEatingChewyBar').require('Eating').require('chewy').require('bar'))
+    def handle_i_am_eating(self, message):
+        self.speak_dialog('WarnCalorie')
 
+    @intent_handler(IntentBuilder('IAmEatingKitKat').require('Eating').require('Kit').require('Kat'))
+    def handle_i_am_eating_kitkat(self, message):
+        self.speak_dialog('TrackSnacksAdvice')
+
+    def stop(self):
+        pass
 def create_skill():
-    return PotatoSkill()
+    return SnacksCalorieTracker()
+
