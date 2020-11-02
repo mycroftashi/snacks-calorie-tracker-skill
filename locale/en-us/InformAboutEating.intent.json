@@ -1,8 +1,0 @@
-{
-  "utterance": "Chewy Bar",
-  "intent_type": "InformAboutEatingIntent",
-  "intent": {
-    "SnackKeyword": "Chewy Bar"
-  }
-}
-

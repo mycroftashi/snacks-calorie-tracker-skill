@@ -1,28 +1,20 @@
-from adapt.intent import IntentBuilder
-from mycroft import MycroftSkill, intent_file_handler, intent_handler
-from mycroft.skills.context import adds_context, removes_context
+from mycroft import MycroftSkill, intent_file_handler
 import os.path
 import json
 
 class SnacksCalorieTracker(MycroftSkill):
     def __init__(self):
-
         MycroftSkill.__init__(self)
 
-    @intent_handler(IntentBuilder('InformAboutEatingIntent').require('SnackKeyword'))
-    def warn_about_snacks(self, message):
-        self.speak_dialog('WarnCalorie')
-
-
-    @intent_handler(IntentBuilder('IgnoreWarningIntent').require('ConfirmKeyword'))
-    def track_snacks_eating(self, message):
-        self.speak_dialog('TrackSnacksAdvice')
+    @intent_file_handler('tracker.calorie.snacks.intent')
+    def handle_tracker_calorie_snacks(self, message):
+        self.speak_dialog('tracker.calorie.snacks')
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         filename = os.path.expanduser("~/test/Calorie_Master.json")
         with open(filename) as f:
            data = json.load(f)
 
-        # Output: {'name': 'Chewy Bar', 'Calorie': 500 }
+        # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
         print(data)
 
         with open(tracker) as json_file:
@@ -31,7 +23,7 @@ class SnacksCalorieTracker(MycroftSkill):
             temp = dataw['Snacks']
 
             # python object to be appended
-            y = {"snack": 'Chewy Bar',
+            y = {"snack": 'kitkat',
                  "quantity": "1",
                  "consumed": "900"
                  }
@@ -42,12 +34,6 @@ class SnacksCalorieTracker(MycroftSkill):
             with open(tracker, 'w') as f:
                 json.dump(dataw, f, indent=4)
 
-    @intent_handler(IntentBuilder('ChangedMindIntent').require('DeclineKeyword'))
-    def good_choice(self, message):
-        self.speak_dialog('WellDoneMessage')
-
-    def stop(self):
-        pass
 def create_skill():
     return SnacksCalorieTracker()
 
