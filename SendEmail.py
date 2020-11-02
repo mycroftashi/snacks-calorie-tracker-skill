@@ -32,3 +32,6 @@ sender = Emailer()
 sendTo = 'mycroftashi83@email.com'
 emailSubject = "Hello World"
 emailContent = "This is a test of my Emailer Class"
+
+#Sends an email to the "sendTo" address with the specified "emailSubject" as the subject and "emailContent" as the email content.
+sender.sendmail(sendTo, emailSubject, emailContent)  
