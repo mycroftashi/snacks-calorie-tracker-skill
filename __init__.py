@@ -17,6 +17,7 @@ class SnacksCalorieTracker(MycroftSkill):
         # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
         print(data)
 
+
         with open(tracker) as json_file:
             dataw = json.load(json_file)
 
