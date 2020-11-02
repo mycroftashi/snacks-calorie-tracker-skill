@@ -9,15 +9,12 @@ class SnacksCalorieTracker(MycroftSkill):
 
         MycroftSkill.__init__(self)
 
-    @intent_handler(IntentBuilder('WhatIsPotato').require('what').require('Potato'))
-    def handle_i_am_eating(self, message):
-        self.speak_dialog('WarnCalorie')
+    @intent_handler(IntentBuilder('WhatIsPotato').require('What')
+                    .require('Potato'))
+    def handle_what_is(self, message):
+        self.speak_dialog('potato.description')
 
-    @intent_handler(IntentBuilder('DoYouLikePotato').require('Potato')
-                    .require('Like').optionally('Type').one_of('You', 'I'))
-    def handle_i_am_eating_kitkat(self, message):
-        self.speak_dialog('TrackSnacksAdvice')
-
+        
     def stop(self):
         pass
 def create_skill():
