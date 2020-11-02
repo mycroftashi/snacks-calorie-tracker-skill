@@ -14,7 +14,7 @@ class SnacksCalorieTracker(MycroftSkill):
     def handle_what_is(self, message):
         self.speak_dialog('potato.description')
 
-        
+
     def stop(self):
         pass
 def create_skill():
