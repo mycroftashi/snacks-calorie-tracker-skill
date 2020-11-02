@@ -21,7 +21,7 @@ class SnacksCalorieTracker(MycroftSkill):
 		the skills.log file."""
         self.log.info("There are five types of log messages: "
                       "info, debug, warning, error, and exception.")
-        self.speak_dialog("hello.world")
+        self.speak_dialog("WarnCalorie")
 
     def stop(self):
         pass
