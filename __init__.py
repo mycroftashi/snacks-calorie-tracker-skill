@@ -10,6 +10,7 @@ class SnacksCalorieTracker(MycroftSkill):
         self.speak_dialog('tracker.calorie.snacks')
 
 
+
 def create_skill():
     return SnacksCalorieTracker()
 
