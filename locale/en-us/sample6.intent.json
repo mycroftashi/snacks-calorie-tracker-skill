@@ -1,5 +1,5 @@
 {
   "utterance": "No, I am hungary and I want to eat it",
-  "intent_type": "HDeclineAdvice.intent",
+  "intent_type": "DeclineAdvice.intent",
   "expected_dialog": "next time"
 }

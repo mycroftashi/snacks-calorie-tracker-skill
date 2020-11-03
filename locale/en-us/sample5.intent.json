@@ -1,5 +1,5 @@
 {
-  "utterance": "Yes I do want toe at it ",
+  "utterance": "Yes I do want to eat it ",
   "intent_type": "DeclineAdvice.intent",
   "expected_dialog": "what goes here"
 }
