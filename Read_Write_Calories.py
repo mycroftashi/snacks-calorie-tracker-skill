@@ -32,7 +32,10 @@ with open('test/DailySnackTracker.json') as json_file:
 		temp.append(y)
 
 		temp1 = data['Counter']
-		print(temp1['count_unhealthy'] +"Asha")
+
+		for val in temp1:
+			print("%s: %s" % (val, temp1[val]))
+		#print(temp1['count_unhealthy'] +"Asha")
 		#temp1["count_unhealthy"] = int(temp1["count_unhealthy"]) + 1
 		#temp1["date and time"] = today
 
