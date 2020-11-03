@@ -25,7 +25,7 @@ class SnacksCalorieTracker(MycroftSkill):
         for data_set in data.get("Items", {}):
             _extract = data_set.get("name", None)
 
-            if _extract in usr_message.upper():
+            if _extract.upper() in usr_message.upper():
                 snack =  data_set.get("Calorie", None)
                 self.speak(_extract + snack)
 
