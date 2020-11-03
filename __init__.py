@@ -12,17 +12,12 @@ class SnacksCalorieTracker(MycroftSkill):
                     .require('SnackKeyword'))
 
     def handle_snacking_intent(self, message):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-        GPIO.setup(18, GPIO.OUT)
-        GPIO.setup(23, GPIO.OUT)
-        print("LED on Orange")
-        GPIO.output(23, GPIO.HIGH)
+
         filename = os.path.expanduser("~/test/Calorie_Master.json")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
-        snack = "none"
+        counter= os.path.expanduser("~/test/Counter.json")
         usr_message = message.data.get('utterance')
-        today = datetime.today().__str__()
+
         with open(filename) as f:
             data = json.load(f)
         for data_set in data.get("Items", {}):
@@ -33,31 +28,51 @@ class SnacksCalorieTracker(MycroftSkill):
                 info = data_set.get("Info", None)
                 calorie = data_set.get("Calorie", None)
                 if choice == "bad":
-                    self.speak("Ok Avyan " + info + " has "+ calorie + " bad calories and sugar in it, which will make you restless .")
-                    self.speak_dialog("WarnCalorie", expect_response=True)
                     print("LED on Orange")
                     GPIO.output(23, GPIO.HIGH)
                     time.sleep(5)
                     print("LED off")
                     GPIO.output(23, GPIO.LOW)
+                    self.speak("Ok Avyan " + info + " has "+ calorie + " bad calories and sugar in it, which will make you restless .")
+                    self.speak_dialog("WarnCalorie", expect_response=True)
+
                     break
+
                 if choice == "good":
-                    self.speak("Ok Avyan" + info + " has "+ calorie + " good calories in it, so")
-                    self.speak_dialog("WellDoneMessage")
-                    tracker = os.path.expanduser("~/test/DailySnackTracker.json")
-                    with open(tracker) as json_file:
-                        dataw = json.load(json_file)
-                        temp = dataw['Counter']
-                        for counter_set in temp.get("Counter", {}):
-                            counter_set["count_healthy"] = counter_set.get("count_healthy") + 1
-                            counter_set["date and time"] = today
-                        with open(tracker, 'w') as f:
-                            json.dump(counter_set, f, indent=4)
+
                     print("LED on Green")
                     GPIO.output(18, GPIO.HIGH)
-                    time.sleep(5)
+                    time.sleep(2)
                     print("LED off")
                     GPIO.output(18, GPIO.LOW)
+                    self.speak("Ok Avyan" + info + " has "+ calorie + " good calories in it, so")
+                    self.speak_dialog("WellDoneMessage")
+
+                    with open(counter) as json_file:
+                        data = json.load(json_file)
+                        data['counter_healthy'] = int(data['counter_healthy']) + int("1")
+                        data['last_updated'] = today = datetime.today().__str__()
+                        with open(counter, 'w') as f:
+                            json.dump(data, f, indent=4)
+
+                       # python object to be appended
+                    with open(tracker) as json_file:
+                            dataw = json.load(json_file)
+                            item = data['Snacks']
+                            today = datetime.today().__str__()
+                            y = {
+                                "snack": _extract.upper(),
+                                "quantity": "1",
+                                "choice": "good",
+                                "consumed": calorie,
+                                "date and time": today
+
+                            }
+                            item.append(y)
+
+                    with open(tracker, 'w') as f:
+                            json.dump(dataw, f, indent=4)
+
                     break
 
 
@@ -68,13 +83,8 @@ class SnacksCalorieTracker(MycroftSkill):
         self.speak_dialog("TrackSnacksAdvice", expect_response=True)
         filename = os.path.expanduser("~/test/Calorie_Master.json")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
-        with open(tracker) as json_file:
-            dataw = json.load(json_file)
-
-            item = dataw['Snacks']
-            counter = dataw['Counter']
-            today = datetime.today().__str__()
-            usr_message = message.data.get('utterance')
+        counter = os.path.expanduser("~/test/Counter.json")
+        usr_message = message.data.get('utterance')
 
             with open(filename) as f:
                 data = json.load(f)
@@ -83,27 +93,33 @@ class SnacksCalorieTracker(MycroftSkill):
                 _extract = data_set.get("name", None)
 
                 if _extract.upper() in usr_message.upper():
-                    snack = _extract
+                    with open(counter) as json_file:
+                        data = json.load(json_file)
+                        data['counter_unhealthy'] = int(data['counter_unhealthy']) + int("1")
+                        data['last_updated'] = today = datetime.today().__str__()
+                        with open(counter, 'w') as f:
+                            json.dump(data, f, indent=4)
+
                     # python object to be appended
-                    y = {
-                                "snack": snack,
-                                "quantity": "1",
-                                 "choice" : "bad",
-                                "consumed": "95",
-                                "date and time": today
-
-                         }
-                    item.append(y)
-
                     with open(tracker) as json_file:
                         dataw = json.load(json_file)
-                        temp = dataw['Counter']
-                        for counter_set in temp.get("Counter", {}):
-                            counter_set["count_unhealthy"] = counter_set.get("count_unhealthy") + 1
-                            counter_set["date and time"] = today
-                        with open(tracker, 'w') as f:
-                            json.dump(dataw, f, indent=4)
-                            json.dump(counter_set, f, indent=4)
+                        item = data['Snacks']
+                        today = datetime.today().__str__()
+                        y = {
+                            "snack": _extract.upper(),
+                            "quantity": "1",
+                            "choice": "bad",
+                            "consumed": calorie,
+                            "date and time": today
+
+                        }
+                        item.append(y)
+
+                    with open(tracker, 'w') as f:
+                        json.dump(dataw, f, indent=4)
+
+                    break
+
 
 
 
@@ -120,17 +136,7 @@ class SnacksCalorieTracker(MycroftSkill):
         print("LED off")
         GPIO.output(18, GPIO.LOW)
         self.speak_dialog("WellDoneMessage")
-        tracker = os.path.expanduser("~/test/DailySnackTracker.json")
-        today = datetime.today().__str__()
-        with open(tracker) as json_file:
-            dataw = json.load(json_file)
-            temp = dataw['Counter']
-            for counter_set in temp.get("Counter", {}):
-                counter_set["count_healthy"] = counter_set.get("count_healthy") + 1
-                counter_set["date and time"] = today
-            with open(tracker, 'w') as f:
-                json.dump(dataw, f, indent=4)
-                json.dump(counter_set, f, indent=4)
+
 
     @intent_handler(IntentBuilder('HappyBirthdayIntent')
                         .require('HappyBirthdayKeyword'))
