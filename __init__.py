@@ -16,11 +16,10 @@ class SnacksCalorieTracker(MycroftSkill):
         GPIO.setup(23, GPIO.OUT)
         print("LED on Orange")
         GPIO.output(23, GPIO.HIGH)
-        time.sleep(2)
+        self.speak_dialog("WarnCalorie", expect_response=True)
+        time.sleep(5)
         print("LED off")
         GPIO.output(23, GPIO.LOW)
-        self.speak_dialog("WarnCalorie", expect_response=True)
-
 
     @intent_handler(IntentBuilder('DeclineAdviceIntent').require('DeclineKeyword'))
     def handle_decline_intent(self, message):
