@@ -1,5 +1,0 @@
-{
-  "utterance": "No, I am hungary and I want to eat it",
-  "intent_type": "DeclineAdviceIntent",
-  "expected_dialog": "next time"
-}
