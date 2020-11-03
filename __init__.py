@@ -22,7 +22,7 @@ class SnacksCalorieTracker(MycroftSkill):
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         snack = "none"
         usr_message = message.data.get('utterance')
-        today = datetime.today()
+        today = datetime.today().__str__()
         with open(filename) as f:
             data = json.load(f)
         for data_set in data.get("Items", {}):
@@ -72,7 +72,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
             item = dataw['Snacks']
             counter = dataw['Counter']
-            today = datetime.today()
+            today = datetime.today().__str__()
             usr_message = message.data.get('utterance')
 
             with open(filename) as f:
@@ -119,6 +119,7 @@ class SnacksCalorieTracker(MycroftSkill):
         GPIO.output(18, GPIO.LOW)
         self.speak_dialog("WellDoneMessage")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
+        today = datetime.today().__str__()
         with open(tracker) as json_file:
             dataw = json.load(json_file)
             for counter_set in dataw.get("Counter", {}):
