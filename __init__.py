@@ -47,7 +47,8 @@ class SnacksCalorieTracker(MycroftSkill):
                     tracker = os.path.expanduser("~/test/DailySnackTracker.json")
                     with open(tracker) as json_file:
                         dataw = json.load(json_file)
-                        for counter_set in dataw.get("Counter", {}):
+                        temp = dataw['Counter']
+                        for counter_set in temp.get("Counter", {}):
                             counter_set["count_healthy"] = counter_set.get("count_healthy") + 1
                             counter_set["date and time"] = today
                         with open(tracker, 'w') as f:
@@ -96,7 +97,8 @@ class SnacksCalorieTracker(MycroftSkill):
 
                     with open(tracker) as json_file:
                         dataw = json.load(json_file)
-                        for counter_set in dataw.get("Counter", {}):
+                        temp = dataw['Counter']
+                        for counter_set in temp.get("Counter", {}):
                             counter_set["count_unhealthy"] = counter_set.get("count_unhealthy") + 1
                             counter_set["date and time"] = today
                         with open(tracker, 'w') as f:
@@ -122,7 +124,8 @@ class SnacksCalorieTracker(MycroftSkill):
         today = datetime.today().__str__()
         with open(tracker) as json_file:
             dataw = json.load(json_file)
-            for counter_set in dataw.get("Counter", {}):
+            temp = dataw['Counter']
+            for counter_set in temp.get("Counter", {}):
                 counter_set["count_healthy"] = counter_set.get("count_healthy") + 1
                 counter_set["date and time"] = today
             with open(tracker, 'w') as f:

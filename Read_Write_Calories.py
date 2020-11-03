@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 with open('test/Calorie_Master.json') as f:
   data = json.load(f)
@@ -7,23 +8,33 @@ with open('test/Calorie_Master.json') as f:
 print(data)
 
 
-def write_json(data, filename='test/DailySnackTracker.json'):
+def write_json(data,temp1, filename='test/DailySnackTracker.json'):
 	with open(filename, 'w') as f:
-		json.dump(data, f, indent=4)
+			json.dump(data, f, indent=4)
+			json.dump(temp1, f, indent=4)
+
 
 
 with open('test/DailySnackTracker.json') as json_file:
-	data = json.load(json_file)
+		data = json.load(json_file)
 
-	temp = data['Snacks']
+		temp = data['Snacks']
+		today = datetime.today().__str__()
+		# python object to be appended
+		y = {
+							"snack": "Apple",
+	                        "quantity": "1",
+	                         "choice" : "good",
+	                        "consumed": "95",
+	                       "date and time": today
+		     }
+		temp.append(y)
 
-	# python object to be appended
-	y = {"snack": 'something',
-	     "quantity": "1",
-	     "consumed": "900"
-	     }
+		temp1 = data['Counter']
 
-	# appending data to emp_details
-	temp.append(y)
+		for counter_set in temp1.get("Counter", {}):
+			counter_set["count_unhealthy"] = counter_set.get("count_unhealthy") + 1
+			counter_set["date and time"] = today
 
-write_json(data)
+
+write_json(data,temp1)
