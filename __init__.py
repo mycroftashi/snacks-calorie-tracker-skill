@@ -38,6 +38,15 @@ class SnacksCalorieTracker(MycroftSkill):
                     self.speak_dialog("WarnCalorie", expect_response=True)
                     GPIO.output(23, GPIO.LOW)
                     # python object to be appended
+
+                    with open(counter) as json_file:
+                        data = json.load(json_file)
+                        data['counter_healthy'] = int(data['counter_healthy']) + int("1")
+
+                        with open(counter, 'w') as f:
+                            json.dump(data, f, indent=4)
+                            print("Increased the unhealthy counter by 1 ")
+
                     with open(tracker) as tracker_file:
                         dataw = json.load(tracker_file)
                         item = dataw['Snacks']
@@ -68,7 +77,7 @@ class SnacksCalorieTracker(MycroftSkill):
                     with open(counter) as json_file:
                         data = json.load(json_file)
                         data['counter_healthy'] = int(data['counter_healthy']) + int("1")
-                        data['last_updated'] = today = datetime.today().__str__()
+
                         with open(counter, 'w') as f:
                             json.dump(data, f, indent=4)
                             print("Increased the healthy counter by 1 ")
@@ -104,7 +113,7 @@ class SnacksCalorieTracker(MycroftSkill):
         GPIO.setup(18, GPIO.OUT)
         GPIO.setup(23, GPIO.OUT)
         filename = os.path.expanduser("~/test/Calorie_Master.json")
-        tracker = os.path.expanduser("~/test/DailySnackTracker.json")
+
         counter = os.path.expanduser("~/test/Counter.json")
         usr_message = message.data.get('utterance')
         GPIO.output(23, GPIO.HIGH)
@@ -121,9 +130,9 @@ class SnacksCalorieTracker(MycroftSkill):
                     with open(counter) as tracker_file:
                         data = json.load(tracker_file)
                         data['counter_unhealthy'] = int(data['counter_unhealthy']) + int("1")
-                        data['last_updated'] = today = datetime.today().__str__()
-                        with open(counter, 'w') as f:
-                            json.dump(data, f, indent=4)
+
+                        with open(counter, 'w') as file:
+                            json.dump(data, file, indent=4)
                             print("Increased the unhealthy counter by 1 ")
 
                     break
@@ -144,6 +153,16 @@ class SnacksCalorieTracker(MycroftSkill):
         print("LED off")
         GPIO.output(18, GPIO.LOW)
         self.speak_dialog("WellDoneMessage")
+        counter = os.path.expanduser("~/test/Counter.json")
+
+    with open(counter) as tracker_file:
+                    data = json.load(tracker_file)
+                    data['counter_unhealthy'] = int(data['counter_unhealthy']) - int("1")
+                    with open(counter, 'w') as f:
+                        json.dump(data, f, indent=4)
+                        print("Reduced the unhealthy counter by 1 ")
+
+
 
 
     @intent_handler(IntentBuilder('HappyBirthdayIntent')
