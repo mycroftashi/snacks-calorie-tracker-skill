@@ -1,5 +1,5 @@
 {
-  "utterance": "How has your day been",
-  "intent_type": "HowAreYou.intent",
-  "expected_dialog": "how.are.you"
+  "utterance": "No, I am hungary and I want to eat it",
+  "intent_type": "HDeclineAdvice.intent",
+  "expected_dialog": "next time"
 }

@@ -1,5 +1,5 @@
 {
-  "utterance": "How are you doing",
-  "intent_type": "HowAreYou.intent",
-  "expected_dialog": "how.are.you"
+  "utterance": "Yes I do want toe at it ",
+  "intent_type": "DeclineAdvice.intent",
+  "expected_dialog": "what goes here"
 }

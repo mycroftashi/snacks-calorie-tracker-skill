@@ -8,11 +8,11 @@ class SnacksCalorieTracker(MycroftSkill):
         """ This is an Adapt intent handler, it is triggered by a keyword."""
         self.speak_dialog("welcome")
 
-    @intent_handler('HowAreYou.intent')
-    def handle_how_are_you_intent(self, message):
+    @intent_handler('DeclineAdvice.intent')
+    def handle_decline_advice(self, message):
         """ This is a Padatious intent handler.
 		It is triggered using a list of sample phrases."""
-        self.speak_dialog("how.are.you")
+        self.speak_dialog("TrackSnacksAdvice")
 
     @intent_handler(IntentBuilder('SnackingIntent')
                     .require('SnackKeyword'))
