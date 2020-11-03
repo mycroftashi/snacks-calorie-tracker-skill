@@ -19,5 +19,6 @@ def write_json(data, filename='test/Counter.json'):
 with open('test/Counter.json') as json_file:
 		data = json.load(json_file)
 		print("coming here now")
-		data['counter_healthy'] = "20"
+		data['counter_healthy'] = int(data['counter_healthy']) + int("1")
+		data['last_updated'] = today = datetime.today().__str__()
 		write_json(data)
