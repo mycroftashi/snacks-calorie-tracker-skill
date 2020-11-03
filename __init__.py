@@ -14,8 +14,8 @@ class SnacksCalorieTracker(MycroftSkill):
 		It is triggered using a list of sample phrases."""
         self.speak_dialog("how.are.you")
 
-    @intent_handler(IntentBuilder('HelloWorldIntent')
-                    .require('HelloWorldKeyword'))
+    @intent_handler(IntentBuilder('SnackingIntent')
+                    .require('SnackKeyword'))
     def handle_hello_world_intent(self, message):
         """ Skills can log useful information. These will appear in the CLI and
 		the skills.log file."""
