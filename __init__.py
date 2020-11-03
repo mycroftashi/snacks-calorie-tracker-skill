@@ -28,9 +28,10 @@ class SnacksCalorieTracker(MycroftSkill):
             if _extract.upper() in usr_message.upper():
                 snack =  data_set.get("Calorie", None)
                 self.speak("Ok Avyan" + _extract + "has"+ snack + "calories and a lot of sugar in it, which will make you restless. Are you sure you want to eat it ?")
+                self.speak_dialog("WarnCalorie", expect_response=True)
                 break
             else:
-                self.speak_dialog("WarnCalorie")
+                self.speak("not a problem Avyan")
 
 
         #self.speak_dialog("WarnCalorie" + snack, expect_response=True)
