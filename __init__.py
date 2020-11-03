@@ -4,6 +4,7 @@ import os.path
 import json
 import RPi.GPIO as GPIO
 import time
+import date
 
 class SnacksCalorieTracker(MycroftSkill):
 
@@ -52,7 +53,7 @@ class SnacksCalorieTracker(MycroftSkill):
                         counter["date and time"] = today
                         with open(tracker, 'w') as f:
                             json.dump(counter, f, indent=4)
-                    print("LED on Orange")
+                    print("LED on Green")
                     GPIO.output(18, GPIO.HIGH)
                     time.sleep(5)
                     print("LED off")

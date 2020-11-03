@@ -1,5 +1,5 @@
 {
-  "utterance": "Sorry but I am hungary",
+  "utterance": "Sorry but I am hungary so I want",
   "intent_type": "DeclineAdviceIntent",
   "intent": {
     "DeclineKeyword": "hungary"
