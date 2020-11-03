@@ -34,11 +34,26 @@ class SnacksCalorieTracker(MycroftSkill):
                 if choice == "bad":
                     print("LED on Orange")
                     GPIO.output(23, GPIO.HIGH)
-                    time.sleep(5)
-                    print("LED off")
-                    GPIO.output(23, GPIO.LOW)
                     self.speak("Ok Avyan " + info + " has "+ calorie + " bad calories and sugar in it, which will make you restless .")
                     self.speak_dialog("WarnCalorie", expect_response=True)
+                    GPIO.output(23, GPIO.LOW)
+                    # python object to be appended
+                    with open(tracker) as tracker_file:
+                        dataw = json.load(tracker_file)
+                        item = dataw['Snacks']
+                        today = datetime.today().__str__()
+                        y = {
+                            "snack": _extract.upper(),
+                            "quantity": "1",
+                            "choice": "bad",
+                            "consumed": calorie,
+                            "date and time": today
+
+                        }
+                        item.append(y)
+
+                    with open(tracker, 'w') as f:
+                        json.dump(dataw, f, indent=4)
 
                     break
 
@@ -46,11 +61,9 @@ class SnacksCalorieTracker(MycroftSkill):
 
                     print("LED on Green")
                     GPIO.output(18, GPIO.HIGH)
-                    time.sleep(2)
-                    print("LED off")
-                    GPIO.output(18, GPIO.LOW)
                     self.speak("Ok Avyan" + info + calorie + " good calories in it, so")
                     self.speak_dialog("WellDoneMessage")
+                    GPIO.output(18, GPIO.LOW)
 
                     with open(counter) as json_file:
                         data = json.load(json_file)
@@ -107,24 +120,6 @@ class SnacksCalorieTracker(MycroftSkill):
                         data['last_updated'] = today = datetime.today().__str__()
                         with open(counter, 'w') as f:
                             json.dump(data, f, indent=4)
-
-                    # python object to be appended
-                    with open(tracker) as json_file:
-                        dataw = json.load(json_file)
-                        item = data['Snacks']
-                        today = datetime.today().__str__()
-                        y = {
-                            "snack": _extract.upper(),
-                            "quantity": "1",
-                            "choice": "bad",
-                            "consumed": calorie,
-                            "date and time": today
-
-                        }
-                        item.append(y)
-
-                    with open(tracker, 'w') as f:
-                        json.dump(dataw, f, indent=4)
 
                     break
 
