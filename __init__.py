@@ -42,7 +42,7 @@ class SnacksCalorieTracker(MycroftSkill):
                     GPIO.output(23, GPIO.LOW)
                     break
                 if choice == "good":
-                    self.speak("Ok Avyan" + info + " has "+ calorie + " good calories in it, so it is a healthy choice .")
+                    self.speak("Ok Avyan" + info + " has "+ calorie + " good calories in it, so")
                     self.speak_dialog("WellDoneMessage")
                     tracker = os.path.expanduser("~/test/DailySnackTracker.json")
                     with open(tracker) as json_file:
