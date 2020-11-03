@@ -143,6 +143,8 @@ class SnacksCalorieTracker(MycroftSkill):
     @intent_handler(IntentBuilder('ListeningIntent')
                     .require('ListenKeyword'))
     def handle_listen_to_advice_intent(self, message):
+
+        counter = os.path.expanduser("~/test/Counter.json")
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         GPIO.setup(18, GPIO.OUT)
@@ -153,9 +155,10 @@ class SnacksCalorieTracker(MycroftSkill):
         print("LED off")
         GPIO.output(18, GPIO.LOW)
         self.speak_dialog("WellDoneMessage")
-        counter = os.path.expanduser("~/test/Counter.json")
 
-    with open(counter) as tracker_file:
+
+
+        with open(counter) as tracker_file:
                     data = json.load(tracker_file)
                     data['counter_unhealthy'] = int(data['counter_unhealthy']) - int("1")
                     with open(counter, 'w') as f:
