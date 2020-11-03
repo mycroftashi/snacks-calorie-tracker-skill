@@ -48,7 +48,7 @@ class SnacksCalorieTracker(MycroftSkill):
                     with open(tracker) as json_file:
                         dataw = json.load(json_file)
                         counter = dataw['Counter']
-                        today = date.today()
+                        today = datetime.today()
                         counter["count_healthy"] = counter.get("count_healthy") + 1
                         counter["date and time"] = today
                         with open(tracker, 'w') as f:
@@ -123,6 +123,19 @@ class SnacksCalorieTracker(MycroftSkill):
             counter["date and time"] = today
             with open(tracker, 'w') as f:
                 json.dump(counter, f, indent=4)
+
+    @intent_handler(IntentBuilder('HappyBirthdayIntent')
+                        .require('HappyBirthdayKeyword'))
+    def handle_happy_birthday_intent(self, message):
+            self.speak("A very very happy birthday to Avyan")
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setwarnings(False)
+            GPIO.setup(18, GPIO.OUT)
+            GPIO.setup(23, GPIO.OUT)
+            GPIO.output(23, GPIO.HIGH)
+            time.sleep(5)
+            GPIO.output(18, GPIO.HIGH)
+            time.sleep(5)
 
 
 def stop(self):

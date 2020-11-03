@@ -1,0 +1,7 @@
+{
+  "utterance": "What is special today",
+  "intent_type": "HappyBirthdayIntent",
+  "intent": {
+    "HappyBirthdayKeyword": "special"
+  }
+}
