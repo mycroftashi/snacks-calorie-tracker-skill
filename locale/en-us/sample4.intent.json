@@ -1,7 +1,7 @@
 {
-  "utterance": "Greetings",
-  "intent_type": "HelloWorldIntent",
+  "utterance": "I am eating a kit kat",
+  "intent_type": "SnackingIntent",
   "intent": {
-    "HelloWorldKeyword": "greetings"
+    "SnackKeyword": "kit kat"
   }
 }

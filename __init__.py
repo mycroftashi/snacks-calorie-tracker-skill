@@ -16,7 +16,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
     @intent_handler(IntentBuilder('SnackingIntent')
                     .require('SnackKeyword'))
-    def handle_hello_world_intent(self, message):
+    def handle_snacking_intent(self, message):
         """ Skills can log useful information. These will appear in the CLI and
 		the skills.log file."""
         self.log.info("There are five types of log messages: "
