@@ -60,8 +60,8 @@ class SnacksCalorieTracker(MycroftSkill):
                             json.dump(data, f, indent=4)
 
                        # python object to be appended
-                    with open(tracker) as json_file:
-                            dataw = json.load(json_file)
+                    with open(tracker) as tracker_file:
+                            dataw = json.load(tracker_file)
                             item = data['Snacks']
                             today = datetime.today().__str__()
                             y = {
@@ -101,8 +101,8 @@ class SnacksCalorieTracker(MycroftSkill):
                 _extract = data_set.get("name", None)
 
                 if _extract.upper() in usr_message.upper():
-                    with open(counter) as json_file:
-                        data = json.load(json_file)
+                    with open(counter) as tracker_file:
+                        data = json.load(tracker_file)
                         data['counter_unhealthy'] = int(data['counter_unhealthy']) + int("1")
                         data['last_updated'] = today = datetime.today().__str__()
                         with open(counter, 'w') as f:

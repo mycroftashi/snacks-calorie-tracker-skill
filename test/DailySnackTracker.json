@@ -7,17 +7,9 @@
                         "quantity": "1",
                          "choice" : "good",
                         "consumed": "95",
-                       "date and time": ""
-                    }
-                ],
-                "Counter": [
-
-                   {
-                        "count_healthy": 1,
-                        "count_unhealthy": 1,
-                        "date and time": "",
-                         "info" : "Today Avyan has made"
+                       "date and time" : "date"
                     }
                 ]
+
 
 }
