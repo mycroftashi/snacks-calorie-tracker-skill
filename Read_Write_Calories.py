@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 with open('test/Counter.json') as f:
-  data = json.load(f)
+   data = json.load(f)
 
 # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
 print(data)
@@ -16,7 +16,7 @@ def write_json(data, filename='test/Counter.json'):
 
 
 
-with open('test/DailySnackTracker.json') as json_file:
+with open('test/Counter.json') as json_file:
 		data = json.load(json_file)
 
 		data['counter_healthy'] = "10"
