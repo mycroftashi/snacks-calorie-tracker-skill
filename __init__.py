@@ -47,12 +47,11 @@ class SnacksCalorieTracker(MycroftSkill):
                     tracker = os.path.expanduser("~/test/DailySnackTracker.json")
                     with open(tracker) as json_file:
                         dataw = json.load(json_file)
-                        counter = dataw['Counter']
-                        today = datetime.today()
-                        counter["count_healthy"] = counter.get("count_healthy") + 1
-                        counter["date and time"] = today
+                        for counter_set in dataw.get("Counter", {}):
+                            counter_set["count_healthy"] = counter_set.get("count_healthy") + 1
+                            counter_set["date and time"] = today
                         with open(tracker, 'w') as f:
-                            json.dump(counter, f, indent=4)
+                            json.dump(counter_set, f, indent=4)
                     print("LED on Green")
                     GPIO.output(18, GPIO.HIGH)
                     time.sleep(5)
@@ -94,11 +93,16 @@ class SnacksCalorieTracker(MycroftSkill):
 
                          }
                     item.append(y)
-                    counter["count_unhealthy"] = counter.get("count_unhealthy") + 1
-                    counter["date and time"] = today
-                    with open(tracker, 'w') as f:
-                        json.dump(dataw, f, indent=4)
-                        json.dump(counter, f, indent=4)
+
+                    with open(tracker) as json_file:
+                        dataw = json.load(json_file)
+                        for counter_set in dataw.get("Counter", {}):
+                            counter_set["count_unhealthy"] = counter_set.get("count_unhealthy") + 1
+                            counter_set["date and time"] = today
+                        with open(tracker, 'w') as f:
+                            json.dump(dataw, f, indent=4)
+                            json.dump(counter_set, f, indent=4)
+
 
 
     @intent_handler(IntentBuilder('ListeningIntent')
@@ -116,14 +120,13 @@ class SnacksCalorieTracker(MycroftSkill):
         self.speak_dialog("WellDoneMessage")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         with open(tracker) as json_file:
-
             dataw = json.load(json_file)
-            counter = dataw['Counter']
-            today = datetime.today()
-            counter["count_healthy"] = counter.get("count_healthy") + 1
-            counter["date and time"] = today
+            for counter_set in dataw.get("Counter", {}):
+                counter_set["count_healthy"] = counter_set.get("count_healthy") + 1
+                counter_set["date and time"] = today
             with open(tracker, 'w') as f:
-                json.dump(counter, f, indent=4)
+                json.dump(dataw, f, indent=4)
+                json.dump(counter_set, f, indent=4)
 
     @intent_handler(IntentBuilder('HappyBirthdayIntent')
                         .require('HappyBirthdayKeyword'))
