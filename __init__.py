@@ -54,7 +54,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
                     with open(tracker, 'w') as f:
                         json.dump(dataw, f, indent=4)
-
+                        print("Made an unhealthy food entry for " +_extract + "in the tracker" )
                     break
 
                 if choice == "good":
@@ -71,6 +71,7 @@ class SnacksCalorieTracker(MycroftSkill):
                         data['last_updated'] = today = datetime.today().__str__()
                         with open(counter, 'w') as f:
                             json.dump(data, f, indent=4)
+                            print("Increased the healthy counter by 1 ")
 
                        # python object to be appended
                     with open(tracker) as tracker_file:
@@ -89,7 +90,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
                     with open(tracker, 'w') as f:
                             json.dump(dataw, f, indent=4)
-
+                            print("Made an healthy food entry for " + _extract + "in the tracker")
                     break
 
 
@@ -106,7 +107,10 @@ class SnacksCalorieTracker(MycroftSkill):
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         counter = os.path.expanduser("~/test/Counter.json")
         usr_message = message.data.get('utterance')
-
+        GPIO.output(23, GPIO.HIGH)
+        time.sleep(5)
+        print("LED off")
+        GPIO.output(23, GPIO.LOW)
         with open(filename) as f:
             data = json.load(f)
 
@@ -120,6 +124,7 @@ class SnacksCalorieTracker(MycroftSkill):
                         data['last_updated'] = today = datetime.today().__str__()
                         with open(counter, 'w') as f:
                             json.dump(data, f, indent=4)
+                            print("Increased the unhealthy counter by 1 ")
 
                     break
 
