@@ -1,0 +1,7 @@
+{
+  "utterance": "I really want to eat this now",
+  "intent_type": "DeclineAdviceIntent",
+  "intent": {
+    "DeclineKeyword": "really"
+  }
+}
