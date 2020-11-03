@@ -49,7 +49,7 @@ class SnacksCalorieTracker(MycroftSkill):
                     time.sleep(2)
                     print("LED off")
                     GPIO.output(18, GPIO.LOW)
-                    self.speak("Ok Avyan" + info + " has "+ calorie + " good calories in it, so")
+                    self.speak("Ok Avyan" + info + calorie + " good calories in it, so")
                     self.speak_dialog("WellDoneMessage")
 
                     with open(counter) as json_file:
@@ -62,7 +62,7 @@ class SnacksCalorieTracker(MycroftSkill):
                        # python object to be appended
                     with open(tracker) as tracker_file:
                             dataw = json.load(tracker_file)
-                            item = data['Snacks']
+                            item = dataw['Snacks']
                             today = datetime.today().__str__()
                             y = {
                                 "snack": _extract.upper(),
