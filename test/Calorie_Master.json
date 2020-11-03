@@ -3,23 +3,60 @@
                 "Items": [
                     {
                         "name": "Chewy Bar",
+                        "choice" : "bad",
                         "unit": "1",
-                        "Calorie": "500",
-                        "Info": "Do you know Chewy Bar is an unhealthy snack that can add 500 calorie",
+                        "Calorie": "132",
+                        "Info": " Chewy Bar is an unhealthy snack that has sugar and has ",
                         "value": "Yes"
                     },
                   {
-                        "name": "KitKat",
+                        "name": "Kit Kat",
+                        "choice" : "bad",
                         "unit": "1",
-                        "Calorie": "800",
-                        "Info": "Do you know Kitkat is an unhealthy snack that can add 800 calorie",
+                        "Calorie": "210",
+                        "Info": " Kit Kat is an unhealthy snack that has sugar and almost ",
                         "value": "Yes"
                     },
                    {
                         "name": "Apple",
+                        "choice" : "good",
+                        "unit": "1",
+                        "Calorie": "95",
+                        "Info": "Apple is a healthy snack that has  ",
+                        "value": "No"
+                    },
+
+                  {
+                        "name": "Banana",
+                        "choice" : "good",
+                        "unit": "1",
+                        "Calorie": "105",
+                        "Info": "Banana is a healthy snack that has  ",
+                        "value": "No"
+                    },
+
+                  {
+                        "name": "Cheerios",
+                        "choice" : "ok",
+                        "unit": "1",
+                        "Calorie": "28",
+                        "Info": "Cheerios is a ok type snack that has  ",
+                        "value": "No"
+                    },
+                  {
+                        "name": "Biscuits",
+                        "choice" : "bad",
+                        "unit": "1",
+                        "Calorie": "523",
+                        "Info": " Biscuits is an unhealthy snack that has sugar and almost ",
+                        "value": "No"
+                    },
+                  {
+                        "name": "Candy",
+                        "choice" : "bad",
                         "unit": "1",
                         "Calorie": "500",
-                        "Info": "Do you know Apple is very healthy snack",
+                        "Info": " Candy is an unhealthy snack that has sugar and almost ",
                         "value": "No"
                     }
                 ]

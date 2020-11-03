@@ -1,7 +1,7 @@
 {
-  "utterance": "I am eating a snack",
+  "utterance": "I am taking a snack to eat",
   "intent_type": "SnackingIntent",
   "intent": {
-    "SnackKeyword": "kit kat"
+    "SnackKeyword": "taking"
   }
 }
