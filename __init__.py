@@ -86,8 +86,8 @@ class SnacksCalorieTracker(MycroftSkill):
         counter = os.path.expanduser("~/test/Counter.json")
         usr_message = message.data.get('utterance')
 
-            with open(filename) as f:
-                data = json.load(f)
+        with open(filename) as f:
+            data = json.load(f)
 
             for data_set in data.get("Items", {}):
                 _extract = data_set.get("name", None)
