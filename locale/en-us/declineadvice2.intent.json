@@ -1,7 +1,7 @@
 {
-  "utterance": "I really want to eat this now",
+  "utterance": "Sorry but I am hungary",
   "intent_type": "DeclineAdviceIntent",
   "intent": {
-    "DeclineKeyword": "really"
+    "DeclineKeyword": "hungary"
   }
 }

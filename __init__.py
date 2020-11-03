@@ -7,7 +7,7 @@ class SnacksCalorieTracker(MycroftSkill):
                     .require('SnackKeyword'))
     def handle_snacking_intent(self, message):
         self.speak_dialog("WarnCalorie", expect_response=True)
-       
+
 
     @intent_handler(IntentBuilder('DeclineAdviceIntent').require('DeclineKeyword'))
     def handle_decline_intent(self, message):

@@ -1,7 +1,7 @@
 {
-  "utterance": "No I do want to eat it now",
+  "utterance": "Sorry but I  want this",
   "intent_type": "DeclineAdviceIntent",
   "intent": {
-    "DeclineKeyword": "No"
+    "DeclineKeyword": "sorry"
   }
 }

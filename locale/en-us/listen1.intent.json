@@ -1,7 +1,7 @@
 {
-  "utterance": "Ok let me choose something healthy",
+  "utterance": "Alright let me choose something healthy",
   "intent_type": "ListeningIntent",
   "intent": {
-    "ListenKeyword": "No"
+    "ListenKeyword": "Alright"
   }
 }
