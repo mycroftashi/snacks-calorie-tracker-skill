@@ -16,7 +16,7 @@ class SnacksCalorieTracker(MycroftSkill):
         GPIO.setup(23, GPIO.OUT)
         print("LED on Orange")
         GPIO.output(23, GPIO.HIGH)
-        time.sleep(5)
+        time.sleep(2)
         print("LED off")
         GPIO.output(23, GPIO.LOW)
         self.speak_dialog("WarnCalorie", expect_response=True)
