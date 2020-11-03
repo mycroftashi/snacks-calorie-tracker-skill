@@ -17,6 +17,10 @@ class SnacksCalorieTracker(MycroftSkill):
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         counter= os.path.expanduser("~/test/Counter.json")
         usr_message = message.data.get('utterance')
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
+        GPIO.setup(18, GPIO.OUT)
+        GPIO.setup(23, GPIO.OUT)
 
         with open(filename) as f:
             data = json.load(f)
@@ -81,6 +85,10 @@ class SnacksCalorieTracker(MycroftSkill):
 
         """ This is an Adapt intent handler, it is triggered by a keyword."""
         self.speak_dialog("TrackSnacksAdvice", expect_response=True)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
+        GPIO.setup(18, GPIO.OUT)
+        GPIO.setup(23, GPIO.OUT)
         filename = os.path.expanduser("~/test/Calorie_Master.json")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         counter = os.path.expanduser("~/test/Counter.json")
