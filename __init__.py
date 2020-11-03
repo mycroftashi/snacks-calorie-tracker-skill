@@ -19,17 +19,16 @@ class SnacksCalorieTracker(MycroftSkill):
         filename = os.path.expanduser("~/test/Calorie_Master.json")
         snack = "none"
         usr_message = message.data.get('utterance')
-        print(usr_message)
+
         with open(filename) as f:
             data = json.load(f)
         for data_set in data.get("Items", {}):
             _extract = data_set.get("name", None)
             print(_extract)
-            if _extract and usr_message in _extract:
+            if usr_message.find(_extract):
                 snack =  data_set.get("Calorie", None)
-                print(snack)
+                self.speak(snack)
         #self.speak_dialog("WarnCalorie" + snack, expect_response=True)
-        self.speak(usr_message)
         time.sleep(5)
         print("LED off")
         GPIO.output(23, GPIO.LOW)
