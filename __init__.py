@@ -66,6 +66,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
         """ This is an Adapt intent handler, it is triggered by a keyword."""
         self.speak_dialog("TrackSnacksAdvice", expect_response=True)
+        filename = os.path.expanduser("~/test/Calorie_Master.json")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         with open(tracker) as json_file:
             dataw = json.load(json_file)
@@ -136,6 +137,8 @@ class SnacksCalorieTracker(MycroftSkill):
             time.sleep(5)
             GPIO.output(18, GPIO.HIGH)
             time.sleep(5)
+            GPIO.output(18, GPIO.LOW)
+            GPIO.output(23, GPIO.LOW)
 
 
 def stop(self):
