@@ -32,9 +32,9 @@ with open('test/DailySnackTracker.json') as json_file:
 		temp.append(y)
 
 		temp1 = data['Counter']
-		print(temp1["count_unhealthy"] + asha)
+		print(temp1[1] + "Asha")
 		#temp1["count_unhealthy"] = int(temp1["count_unhealthy"]) + 1
-		temp1["date and time"] = today
+		#temp1["date and time"] = today
 
 
 write_json(data,temp1)
