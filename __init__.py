@@ -16,7 +16,14 @@ class SnacksCalorieTracker(MycroftSkill):
         GPIO.setup(23, GPIO.OUT)
         print("LED on Orange")
         GPIO.output(23, GPIO.HIGH)
-        snack = getResponse(message)
+        filename = os.path.expanduser("~/test/Calorie_Master.json")
+        snack = "none"
+        with open(filename) as f:
+            data = json.load(f)
+        for data_set in data.get("Items", {}):
+            _extract = data_set.get("name", None)
+            if _extract and message in _extract:
+                snack =  data_set.get("Calorie", None)
         self.speak_dialog("WarnCalorie" + snack, expect_response=True)
         time.sleep(5)
         print("LED off")
@@ -53,16 +60,6 @@ class SnacksCalorieTracker(MycroftSkill):
             time.sleep(10)
             print("LED off")
             GPIO.output(23, GPIO.LOW)
-
-    def getResponse(user_msg):
-        filename = os.path.expanduser("~/test/Calorie_Master.json")
-        with open(filename) as f:
-            data = json.load(f)
-        for data_set in data.get("Items", {}):
-            _extract = data_set.get("name", None)
-            if _extract and user_msg in _extract:
-                return data_set.get("Calorie", None)
-
 
 
     @intent_handler(IntentBuilder('ListeningIntent')
