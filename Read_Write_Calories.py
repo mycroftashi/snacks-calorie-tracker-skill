@@ -18,10 +18,6 @@ def write_json(data, filename='test/Counter.json'):
 
 with open('test/Counter.json') as json_file:
 		data = json.load(json_file)
-
-		data['counter_healthy'] = "10"
-
-
-
-
-write_json(data)
+		print("coming here now")
+		data['counter_healthy'] = "20"
+		write_json(data)
