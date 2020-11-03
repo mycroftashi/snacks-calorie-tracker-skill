@@ -24,10 +24,12 @@ class SnacksCalorieTracker(MycroftSkill):
             data = json.load(f)
         for data_set in data.get("Items", {}):
             _extract = data_set.get("name", None)
-            print(_extract)
+
             if usr_message.find(_extract):
                 snack =  data_set.get("Calorie", None)
-                self.speak(snack)
+                self.speak(_extract + snack)
+            else:
+                self.speak_dialog("WarnCalorie")
         #self.speak_dialog("WarnCalorie" + snack, expect_response=True)
         time.sleep(5)
         print("LED off")
