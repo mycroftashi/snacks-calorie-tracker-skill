@@ -9,6 +9,7 @@ print(data)
 
 
 def write_json(data,temp1, filename='test/DailySnackTracker.json'):
+	print("coming here")
 	with open(filename, 'w') as f:
 			json.dump(data, f, indent=4)
 			json.dump(temp1, f, indent=4)
