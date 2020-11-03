@@ -4,7 +4,7 @@ import os.path
 import json
 import RPi.GPIO as GPIO
 import time
-import date
+from datetime import datetime
 
 class SnacksCalorieTracker(MycroftSkill):
 
@@ -22,7 +22,7 @@ class SnacksCalorieTracker(MycroftSkill):
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         snack = "none"
         usr_message = message.data.get('utterance')
-
+        today = datetime.today()
         with open(filename) as f:
             data = json.load(f)
         for data_set in data.get("Items", {}):
@@ -72,7 +72,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
             item = dataw['Snacks']
             counter = dataw['Counter']
-            today = date.today()
+            today = datetime.today()
             usr_message = message.data.get('utterance')
 
             with open(filename) as f:
@@ -118,7 +118,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
             dataw = json.load(json_file)
             counter = dataw['Counter']
-            today = date.today()
+            today = datetime.today()
             counter["count_healthy"] = counter.get("count_healthy") + 1
             counter["date and time"] = today
             with open(tracker, 'w') as f:
