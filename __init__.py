@@ -56,6 +56,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             self.speak("Ok Avyan " + info + calorie + " bad calories and sugar in it, which will make you restless .")
                             # Wait for response to see if choice is changed
                             reconsider_choice = self.ask_yesno("WarnCalorie")
+                            wait_while_speaking()
                             if reconsider_choice == 'yes':
                                     self.speak("Ok, not a great choice, but let me make an entry")
                                     #switch off LED
