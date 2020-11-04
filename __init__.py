@@ -7,6 +7,7 @@ import time
 from mycroft.util import play_wav
 from datetime import datetime
 from twilio.rest import Client
+from mycroft.audio import wait_while_speaking
 import smtplib
 
 class SnacksCalorieTracker(MycroftSkill):
@@ -53,7 +54,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             #Lit Red LED
                             GPIO.output(23, GPIO.HIGH)
                             #Give more info about unhealthy snack to reconsider choice
-                            self.speak("Ok Avyan " + info + " has "+ calorie + " bad calories and sugar in it, which will make you restless .")
+                            self.speak("Ok Avyan " + info + calorie + " bad calories and sugar in it, which will make you restless .")
 
                             # Wait for response to see if choice is changed
                             reconsider_choice = self.ask_yesno("WarnCalorie")
