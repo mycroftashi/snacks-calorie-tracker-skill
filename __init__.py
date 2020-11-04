@@ -124,7 +124,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
                             with open(tracker, 'w') as tf:
                                 json.dump(dataw, tf, indent=4)
-                                self.speak("All done")
+                                self.speak("All set")
                                 print("Made an healthy food entry for " + _extract + "in the tracker")
 
                             break
@@ -134,7 +134,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
         counter= os.path.expanduser("~/SnackMaster/Counter.json")
 
-        self.speak("Ok, not a great choice, but let me make an entry")
+        self.speak("Ok, not a great choice, but let me mark it")
         with open(counter) as json_file:
             data = json.load(json_file)
             data['counter_unhealthy'] = int(data['counter_unhealthy']) + int("1")
@@ -143,7 +143,8 @@ class SnacksCalorieTracker(MycroftSkill):
         with open(counter, 'w') as counterf:
             json.dump(data, counterf, indent=4)
             print("Increased the unhealthy counter by 1 ")
-            self.speak("Today you have eaten " + current_unhealthy_counter + "unhealthy snacks")
+            self.speak("Do you know today you've made" + current_unhealthy_counter + "unhealthy choices. You are all set")
+
 
             if int(current_unhealthy_counter) >= 4:
                 # the following line needs your Twilio Account SID and Auth Token
