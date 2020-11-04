@@ -59,7 +59,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             #Lit Red LED
                             GPIO.output(23, GPIO.HIGH)
                             #Give more info about unhealthy snack to reconsider choice
-                            self.speak("Ok Avyan, Let me warn you " + info + calorie + " bad calories and sugar in it, which will make you restless .")
+                            self.speak("Ok Avyan, Let me warn you " + info + calorie + " bad calories in it, which will make you restless .")
                             self.speak_dialog("WarnCalorie", expect_response=True, wait=True)
                             # Wait for response to see if choice is changed
                             #reconsider_choice = self.ask_yesno("WarnCalorie")
