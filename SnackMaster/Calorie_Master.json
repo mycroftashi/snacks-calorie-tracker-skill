@@ -1,0 +1,27 @@
+{
+
+                "Items": [
+                    {
+                        "name": "Chewy Bar",
+                        "unit": "1",
+                        "Calorie": "500",
+                        "Info": "Do you know Chewy Bar is an unhealthy snack that can add 500 calorie",
+                        "value": "Yes"
+                    },
+                  {
+                        "name": "KitKat",
+                        "unit": "1",
+                        "Calorie": "800",
+                        "Info": "Do you know Kitkat is an unhealthy snack that can add 800 calorie",
+                        "value": "Yes"
+                    },
+                   {
+                        "name": "Apple",
+                        "unit": "1",
+                        "Calorie": "500",
+                        "Info": "Do you know Apple is very healthy snack",
+                        "value": "No"
+                    }
+                ]
+
+}
