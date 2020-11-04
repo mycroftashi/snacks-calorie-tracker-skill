@@ -118,7 +118,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             with open(tracker) as tracker_file:
                                 dataw = json.load(tracker_file)
                                 item = dataw['Snacks']
-                                today = datetime.today().__str__()
+                                today = datetime.today().strftime("%H:%M:%S").__str__()
                                 y = {
                                                     "snack": _extract.upper(),
                                                     "quantity": "1",

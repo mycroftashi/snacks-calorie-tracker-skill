@@ -3,7 +3,7 @@
                 "Snacks": [
 
                    {
-                        "snack": "Apple",
+                        "snack": "TestEntry",
                         "quantity": "1",
                          "choice" : "good",
                         "consumed": "95",
