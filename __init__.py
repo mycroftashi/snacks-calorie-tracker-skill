@@ -31,7 +31,6 @@ class SnacksCalorieTracker(MycroftSkill):
 
         #Get the user message
         usr_message = message.data.get('utterance')
-        self.speak ("You are snacking")
         # search for a snack name in user message
         with open(filename) as f:
             data = json.load(f)
@@ -59,6 +58,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             GPIO.output(23, GPIO.HIGH)
                             #Give more info about unhealthy snack to reconsider choice
                             self.speak("Ok Avyan " + info + calorie + " bad calories and sugar in it, which will make you restless .")
+                            self.speak_dialog("WarnCalorie")
                             # Wait for response to see if choice is changed
                             #reconsider_choice = self.ask_yesno("WarnCalorie")
                             # Update unhealthy counter by 1
@@ -192,8 +192,16 @@ class SnacksCalorieTracker(MycroftSkill):
                 dataw = json.load(tracker_file)
                 item = dataw['Snacks']
 
+
+        print("sending email now")
+        sender = Emailer()
+        sendTo = 'mycroftashi@gmail.com'
+        emailSubject = "Avyan's Snack Report, Healthy Snack:" + healthysnack + " Unhealthy Snack:" + unhealthysnack
+        emailContent = "This is the summary of Avyan's snack history today" + item
+
+
             # Create Headers
-        headers = ["From: " + GMAIL_USERNAME, "Subject: " + subject, "To: " + recipient,
+        headers = ["From: " + GMAIL_USERNAME, "Subject: " + emailSubject, "To: " + sendTo,
                    "MIME-Version: 1.0", "Content-Type: text/html"]
         headers = "\r\n".join(headers)
 
@@ -205,19 +213,11 @@ class SnacksCalorieTracker(MycroftSkill):
 
         # Login to Gmail
         session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
-        self.speak("Sending ane mail now with today's snacking report for Avyan")
+        self.speak("Sending an email now with today's snacking report for Avyan")
         # Send Email & Exit
-        session.sendmail(GMAIL_USERNAME, recipient, headers + "\r\n\r\n" + content)
+        session.sendmail(GMAIL_USERNAME, sendTo, headers + "\r\n\r\n" + emailContent)
         session.quit
 
-        print("sending email now")
-        sender = Emailer()
-        sendTo = 'mycroftashi@gmail.com'
-        emailSubject = "Avyan's Snack Report, Healthy Snack:" + healthysnack + " Unhealthy Snack:" + unhealthysnack
-        emailContent = "This is the summary of Avyan's snack history today" + item
-
-        # Sends an email to the "sendTo" address with the specified "emailSubject" as the subject and "emailContent" as the email content.
-        sender.sendmail(sendTo, emailSubject, emailContent)
 
 
 def stop(self):
