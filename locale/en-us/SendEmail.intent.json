@@ -1,0 +1,7 @@
+{
+  "utterance": "Send snack report to my email",
+  "intent_type": "SendEmailIntent",
+  "intent": {
+    "SendEmailKeyword": "email"
+  }
+}
