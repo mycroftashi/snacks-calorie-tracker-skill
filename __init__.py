@@ -4,6 +4,7 @@ import os.path
 import json
 import RPi.GPIO as GPIO
 import time
+from mycroft.util import play_wav
 from datetime import datetime
 
 class SnacksCalorieTracker(MycroftSkill):
@@ -16,9 +17,9 @@ class SnacksCalorieTracker(MycroftSkill):
         filename = os.path.expanduser("~/test/Calorie_Master.json")
         tracker = os.path.expanduser("~/test/DailySnackTracker.json")
         counter= os.path.expanduser("~/test/Counter.json")
+        wavfile = os.path.expanduser("~/hello.wav")
         usr_message = message.data.get('utterance')
-        mycroft.util.play_wav("hello.wav")
-        #play_obj.wait_done()  # Wait until sound has finished playing
+        play_wav(wavfile)
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
