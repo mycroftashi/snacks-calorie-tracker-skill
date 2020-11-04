@@ -62,7 +62,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
                             if reconsider_choice == 'yes':
                                 self.speak("Ok, not a great choice, but let me make an entry")
-                                wait_while_speaking()
+
                             #switch off LED
                             GPIO.output(23, GPIO.HIGH)
                             # python object to be appended
@@ -71,13 +71,13 @@ class SnacksCalorieTracker(MycroftSkill):
                             with open(counter) as json_file:
                                 data = json.load(json_file)
                                 data['counter_unhealthy'] = int(data['counter_unhealthy']) + int("1")
-                                current_unhealthy_counter = int(data['counter_unhealthy'])
+                                current_unhealthy_counter = str(data['counter_unhealthy'])
                                 #Update unhealthy counter
                                 with open(counter, 'w') as counterf:
                                     json.dump(data, counterf, indent=4)
                                     print("Increased the unhealthy counter by 1 ")
-                                    self.speak("Today you have eaten " + data['counter_unhealthy'] + "unhealthy snacks" )
-                                    wait_while_speaking()
+                                    self.speak("Today you have eaten " + current_unhealthy_counter + "unhealthy snacks" )
+
 
                                     #Send SMS if unhealthy snacks is meeting teh threshhold limit
                                     if current_unhealthy_counter >= 4:
@@ -108,7 +108,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             with open(tracker, 'w') as trackerf:
                                 json.dump(dataw, trackerf, indent=4)
                                 self.speak ("All done")
-                                wait_while_speaking()
+
                                 print("Made an unhealthy food entry for " +_extract + "in the tracker" )
 
 
@@ -160,7 +160,6 @@ class SnacksCalorieTracker(MycroftSkill):
                             with open(tracker, 'w') as tf:
                                     json.dump(dataw, tf, indent=4)
                                     self.speak("All done")
-                                    wait_while_speaking()
                                     print("Made an healthy food entry for " + _extract + "in the tracker")
                             break
 
