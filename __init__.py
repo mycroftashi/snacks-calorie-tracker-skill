@@ -69,14 +69,6 @@ class SnacksCalorieTracker(MycroftSkill):
                                data = json.load(json_file)
                                current_unhealthy_counter = str(data['counter_unhealthy'])
                             #Update unhealthy counter
-                            if int(current_unhealthy_counter) >= 4:
-                                # the following line needs your Twilio Account SID and Auth Token
-                                client = Client("AC429a4c06f04eb36287f1c2a682c90a2a", "495432b271342a17d837db7418744cc9")
-                                # change the "from_" number to your Twilio number and the "to" number
-                                # to the phone number you signed up for Twilio with, or upgrade your
-                                # account to send SMS to any phone number
-                                client.messages.create(to="+12012400693", from_ = "+16267095806", body = "Alert - Avyan is eating way too much unhealthy snack today! so you might want to check him out ")
-                                # start - finish sms
 
                             # Add entry in Daily snack tracker for unhealthy snack intent
                             with open(tracker) as tracker_file:
@@ -152,6 +144,16 @@ class SnacksCalorieTracker(MycroftSkill):
             json.dump(data, counterf, indent=4)
             print("Increased the unhealthy counter by 1 ")
             self.speak("Today you have eaten " + current_unhealthy_counter + "unhealthy snacks")
+
+            if int(current_unhealthy_counter) >= 4:
+                # the following line needs your Twilio Account SID and Auth Token
+                client = Client("AC429a4c06f04eb36287f1c2a682c90a2a", "495432b271342a17d837db7418744cc9")
+                # change the "from_" number to your Twilio number and the "to" number
+                # to the phone number you signed up for Twilio with, or upgrade your
+                # account to send SMS to any phone number
+                client.messages.create(to="+12012400693", from_="+16267095806",
+                                       body="Alert - Avyan is eating way too much unhealthy snack today! so you might want to check him out ")
+                # start - finish sms
 
     @intent_handler(IntentBuilder('ListeningIntent')
                     .require('ListenKeyword'))
