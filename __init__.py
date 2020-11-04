@@ -31,7 +31,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
         #Get the user message
         usr_message = message.data.get('utterance')
-        speak ("You are snacking")
+        self.speak ("You are snacking")
         # search for a snack name in user message
         with open(filename) as f:
             data = json.load(f)
