@@ -57,8 +57,8 @@ class SnacksCalorieTracker(MycroftSkill):
                             #Lit Red LED
                             GPIO.output(23, GPIO.HIGH)
                             #Give more info about unhealthy snack to reconsider choice
-                            self.speak("Ok Avyan " + info + calorie + " bad calories and sugar in it, which will make you restless .")
-                            self.speak_dialog("WarnCalorie")
+                            self.speak("Ok Avyan, Let me warn you " + info + calorie + " bad calories and sugar in it, which will make you restless .")
+                            self.speak_dialog("WarnCalorie", expect_response=True, wait=True)
                             # Wait for response to see if choice is changed
                             #reconsider_choice = self.ask_yesno("WarnCalorie")
                             # Update unhealthy counter by 1
@@ -93,7 +93,6 @@ class SnacksCalorieTracker(MycroftSkill):
 
                             with open(tracker, 'w') as trackerf:
                                     json.dump(dataw, trackerf, indent=4)
-                                    self.speak ("All done")
                                     print("Made an unhealthy food entry for " +_extract + " in the tracker" )
 
                         # if snack choice is healthy
@@ -137,6 +136,9 @@ class SnacksCalorieTracker(MycroftSkill):
 
     @intent_handler(IntentBuilder('DeclineAdviceIntent').require('DeclineKeyword'))
     def handle_decline_intent(self, message):
+
+        counter= os.path.expanduser("~/test/Counter.json")
+
         self.speak("Ok, not a great choice, but let me make an entry")
         with open(counter) as json_file:
             data = json.load(json_file)
@@ -194,7 +196,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
 
         print("sending email now")
-        sender = Emailer()
+       
         sendTo = 'mycroftashi@gmail.com'
         emailSubject = "Avyan's Snack Report, Healthy Snack:" + healthysnack + " Unhealthy Snack:" + unhealthysnack
         emailContent = "This is the summary of Avyan's snack history today" + item
