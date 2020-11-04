@@ -75,7 +75,7 @@ class SnacksCalorieTracker(MycroftSkill):
                                 # change the "from_" number to your Twilio number and the "to" number
                                 # to the phone number you signed up for Twilio with, or upgrade your
                                 # account to send SMS to any phone number
-                                client.messages.create(to="+12012400693", from_ = "+16267095806", body = "Alert - Avyan is eating way too much unhealthy snack today!")
+                                client.messages.create(to="+12012400693", from_ = "+16267095806", body = "Alert - Avyan is eating way too much unhealthy snack today! so you might want to check him out ")
                                 # start - finish sms
 
                             # Add entry in Daily snack tracker for unhealthy snack intent
