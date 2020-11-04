@@ -10,6 +10,8 @@ from twilio.rest import Client
 from mycroft.audio import wait_while_speaking
 import smtplib
 
+
+
 class SnacksCalorieTracker(MycroftSkill):
 
     @intent_handler(IntentBuilder('SnackingIntent')
@@ -196,10 +198,11 @@ class SnacksCalorieTracker(MycroftSkill):
 
 
         print("sending email now")
-
+        email_body = json.dumps(
+            item, indent=4, sort_keys=True).replace(' ', '&nbsp;').replace('\n', '<br>')
         sendTo = 'mycroftashi@gmail.com'
         emailSubject = "Avyan's Snack Report, Healthy Snack:" + str(healthysnack) + " Unhealthy Snack:" + str(unhealthysnack)
-        emailContent = "This is the summary of Avyan's snack history today" + item
+        emailContent = email_body
 
 
             # Create Headers
