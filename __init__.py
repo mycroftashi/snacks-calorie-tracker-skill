@@ -20,9 +20,9 @@ class SnacksCalorieTracker(MycroftSkill):
     def handle_snacking_intent(self, message):
 
      #Set Json files to read
-        filename = os.path.expanduser("~/test/Calorie_Master.json")
-        tracker = os.path.expanduser("~/test/DailySnackTracker.json")
-        counter= os.path.expanduser("~/test/Counter.json")
+        filename = os.path.expanduser("~/SnackMaster/Calorie_Master.json")
+        tracker = os.path.expanduser("~/SnackMaster/DailySnackTracker.json")
+        counter= os.path.expanduser("~/SnackMaster/Counter.json")
     #Set GPIO Pins
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
@@ -139,7 +139,7 @@ class SnacksCalorieTracker(MycroftSkill):
     @intent_handler(IntentBuilder('DeclineAdviceIntent').require('DeclineKeyword'))
     def handle_decline_intent(self, message):
 
-        counter= os.path.expanduser("~/test/Counter.json")
+        counter= os.path.expanduser("~/SnackMaster/Counter.json")
 
         self.speak("Ok, not a great choice, but let me make an entry")
         with open(counter) as json_file:
@@ -157,7 +157,7 @@ class SnacksCalorieTracker(MycroftSkill):
     def handle_listen_to_advice_intent(self, message):
         GPIO.output(23, GPIO.LOW)
         GPIO.output(18, GPIO.HIGH)
-        wavfile = os.path.expanduser("~/hello.wav")
+        wavfile = os.path.expanduser("~/welldone.wav")
         play_wav(wavfile)
 
     @intent_handler(IntentBuilder('HappyBirthdayIntent')
@@ -185,8 +185,8 @@ class SnacksCalorieTracker(MycroftSkill):
         GMAIL_PASSWORD = 'mycroft1983'  # change this to match your gmail password
 
         #Getting counter to send Summary
-        counter = os.path.expanduser("~/test/Counter.json")
-        tracker = os.path.expanduser("~/test/DailySnackTracker.json")
+        counter = os.path.expanduser("~/SnackMaster/Counter.json")
+        tracker = os.path.expanduser("~/SnackMaster/DailySnackTracker.json")
         with open(counter) as json_file:
             data = json.load(json_file)
             healthysnack = data['counter_healthy']
