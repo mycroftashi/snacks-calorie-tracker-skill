@@ -196,9 +196,9 @@ class SnacksCalorieTracker(MycroftSkill):
 
 
         print("sending email now")
-       
+
         sendTo = 'mycroftashi@gmail.com'
-        emailSubject = "Avyan's Snack Report, Healthy Snack:" + healthysnack + " Unhealthy Snack:" + unhealthysnack
+        emailSubject = "Avyan's Snack Report, Healthy Snack:" + str(healthysnack) + " Unhealthy Snack:" + str(unhealthysnack)
         emailContent = "This is the summary of Avyan's snack history today" + item
 
 
