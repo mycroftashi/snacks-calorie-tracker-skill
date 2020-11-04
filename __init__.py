@@ -43,14 +43,14 @@ class SnacksCalorieTracker(MycroftSkill):
                 choice = ""
                 info =""
                 calorie=""
-                print("choice" + choice)
+                print(choice)
 
                 if _extract.upper() in usr_message.upper():
                  # find out details about the snack
                     choice = data_set.get("choice", None)
                     info = data_set.get("Info", None)
                     calorie = data_set.get("Calorie", None)
-                    print("choice" + choice)
+                    print(choice)
 
 
                     # if snack choice is unhealthy
