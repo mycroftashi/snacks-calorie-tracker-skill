@@ -3,10 +3,13 @@
                 "Snacks": [
 
                    {
-                        "snack": "Apple",
+                        "snack": "ignoreTestEntry",
                         "quantity": "1",
-                        "consumed": "500"
+                         "choice" : "good",
+                        "consumed": "95",
+                       "date and time" : "date"
                     }
                 ]
+
 
 }
