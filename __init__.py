@@ -153,7 +153,7 @@ class SnacksCalorieTracker(MycroftSkill):
                 # to the phone number you signed up for Twilio with, or upgrade your
                 # account to send SMS to any phone number
                 client.messages.create(to="+12012400693", from_="+16267095806",
-                                       body="Alert - Avyan is eating way too much unhealthy snack today! so you might want to check him out ")
+                                       body="Alert - Avyan is eating way too much unhealthy ! He is on his " + current_unhealthy_counter + " unhealthy snack today so you might want to check him out ")
                 # start - finish sms
 
     @intent_handler(IntentBuilder('ListeningIntent')
