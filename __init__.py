@@ -61,6 +61,7 @@ class SnacksCalorieTracker(MycroftSkill):
                             #Give more info about unhealthy snack to reconsider choice
                             self.speak("Ok Avyan, Let me warn you " + info + calorie + " bad calories in it, which will make you restless .")
                             self.speak_dialog("WarnCalorie", expect_response=True, wait=True)
+                            self.enclosure.register(self.name)
                             # Wait for response to see if choice is changed
                             #reconsider_choice = self.ask_yesno("WarnCalorie")
                             # Update unhealthy counter by 1
