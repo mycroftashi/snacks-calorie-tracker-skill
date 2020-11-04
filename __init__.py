@@ -39,6 +39,10 @@ class SnacksCalorieTracker(MycroftSkill):
         for data_set in data.get("Items", {}):
                 _extract = data_set.get("name", None)
                 print("executing for loop")
+                choice = ""
+                info =""
+                calorie=""
+                
                 if _extract.upper() in usr_message.upper():
                  # find out details about the snack
                      choice = data_set.get("choice", None)
