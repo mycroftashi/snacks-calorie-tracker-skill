@@ -49,9 +49,9 @@ class SnacksCalorieTracker(MycroftSkill):
                      info = data_set.get("Info", None)
                      calorie = data_set.get("Calorie", None)
 
-                    # if snack choice is unhealthy
                 print(choice)
 
+                # if snack choice is unhealthy
                 if choice == "bad":
                     print("Signal unhealthy snack")
                     #Lit Red LED
@@ -95,7 +95,6 @@ class SnacksCalorieTracker(MycroftSkill):
                             self.speak ("All done")
                             print("Made an unhealthy food entry for " +_extract + "in the tracker" )
 
-
                 # if snack choice is healthy
                 if choice == "good":
                      #Lit the green signal for healthy snacking
@@ -132,6 +131,7 @@ class SnacksCalorieTracker(MycroftSkill):
                         json.dump(dataw, tf, indent=4)
                         self.speak("All done")
                         print("Made an healthy food entry for " + _extract + "in the tracker")
+
                 break
 
     @intent_handler(IntentBuilder('DeclineAdviceIntent').require('DeclineKeyword'))
