@@ -135,7 +135,7 @@ class SnacksCalorieTracker(MycroftSkill):
 
         counter= os.path.expanduser("~/SnackMaster/Counter.json")
 
-        self.speak("Ok, not a great choice, but let me mark it")
+        self.speak("Ok, not great as you have chosen an unhealthy choice ")
         with open(counter) as json_file:
             data = json.load(json_file)
             data['counter_unhealthy'] = int(data['counter_unhealthy']) + int("1")
