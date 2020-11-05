@@ -97,7 +97,8 @@ class SnacksCalorieTracker(MycroftSkill):
                             GPIO.output(23, GPIO.LOW)
                             GPIO.output(18, GPIO.HIGH)
                             #Encourage good choice
-                            self.speak("Ok Avyan " + info + calorie + " good calories in it, so you have made a healthy choice, Let me mark it")
+                            self.speak("Well done Avyan !,  Do you know  " + info + calorie + " good calories in it, so you have made a healthy choice .")
+                            self.speak ("Let me track it for today ")
                             #Update counter of healthy snacking
                             with open(counter) as json_file:
                                 data = json.load(json_file)
@@ -143,10 +144,12 @@ class SnacksCalorieTracker(MycroftSkill):
         with open(counter, 'w') as counterf:
             json.dump(data, counterf, indent=4)
             print("Increased the unhealthy counter by 1 ")
-            self.speak("Do you know today you've made" + current_unhealthy_counter + "unhealthy choices. You are all set")
+            self.speak("Avyan, Do you know today you've made,  " + current_unhealthy_counter + ",  unhealthy choices ")
+            self.speak("Let me track it for today ")
 
 
             if int(current_unhealthy_counter) >= 4:
+                self.speak("Ok Avyan, you are eating way too much unhealthy today, so I am going to report Mom about it now ")
                 # the following line needs your Twilio Account SID and Auth Token
                 client = Client("AC429a4c06f04eb36287f1c2a682c90a2a", "495432b271342a17d837db7418744cc9")
                 # change the "from_" number to your Twilio number and the "to" number
