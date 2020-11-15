@@ -151,7 +151,7 @@ class SnacksCalorieTracker(MycroftSkill):
             if int(current_unhealthy_counter) >= 4:
                 self.speak("Ok Avyan, you are eating way too much unhealthy today, so I am going to report Mom about it now ")
                 # the following line needs your Twilio Account SID and Auth Token
-                client = Client("AC429a4c06f04eb36287f1c2a682c90a2a", "81d65c9d9e1f92a2539b658f6bbab9f1")
+                client = Client("AC429a4c06f04eb36287f1c2a682c90a2a", "82babdd5264c6773fe96a780e7e5319d")
                 # change the "from_" number to your Twilio number and the "to" number
                 # to the phone number you signed up for Twilio with, or upgrade your
                 # account to send SMS to any phone number
